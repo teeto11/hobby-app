@@ -49,7 +49,7 @@ class UserController extends Controller
         }
         $hobby = Hobby::create($input);
         Mail::to($hobby->user->email)->send(new CreateHobby($hobby));
-        $phone_number= '+2348180801630';   // Don't forget specify country code.
+        $phone_number= $hobby->user->phone_number;  
          $hobby->notify(new SMSNotification($phone_number));
         return $this->sendResponse($hobby->toArray(), 'Hobby added successfully.');
        // Mail::to($hobby->user->email)->send(new CreateHobby($hobby,$user));
