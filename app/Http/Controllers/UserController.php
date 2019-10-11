@@ -7,6 +7,7 @@ use  App\User;
 use App\Hobby;
 use Mail;
 use App\Mail\CreateHobby;
+use App\Notifications\SMSNotification;
 use App\Mail\UpdateHobby;
 use App\Mail\DeleteHobby;
 use Validator;
@@ -48,6 +49,8 @@ class UserController extends Controller
         }
         $hobby = Hobby::create($input);
         Mail::to($hobby->user->email)->send(new CreateHobby($hobby));
+        $phone_number= '+2348180801630';   // Don't forget specify country code.
+         $hobby->notify(new SMSNotification($phone_number));
         return $this->sendResponse($hobby->toArray(), 'Hobby added successfully.');
        // Mail::to($hobby->user->email)->send(new CreateHobby($hobby,$user));
     }

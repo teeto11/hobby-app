@@ -79,13 +79,15 @@ components:{
              this.headers= {Authorization:this.token}
              this.user = localStorage.getItem("user")
              this.detail.user_id = this.user
+             console.log(this.detail.user_id)
              axios.post('http://localhost:7000/api/add-hobby',this.detail,this.headers)
+
                   .then((response)=>{
                      if(response.data.success == false){
                          this.error = response.data.data
                      }else{
                          this.message = response.data.message
-                         this.detail =''
+                         this.detail.hobby =''
                          this.getdata()
                      }
                      console.log(response)

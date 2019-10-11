@@ -19,7 +19,7 @@
                <router-link to="/#" class="navbar-brand">
                  Welcome {{username}}
                 </router-link> 
-               <router-link to="/logout" @click="logout" class="navbar-brand">
+               <router-link to="/#" @click="logout" class="navbar-brand">
                 Logout
                 </router-link> 
             </div>

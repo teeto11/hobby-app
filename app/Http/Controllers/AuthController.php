@@ -15,10 +15,11 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
-        $credentials = $request->only('name', 'email', 'password');
+        $credentials = $request->only('name', 'email','phone_number', 'password');
         $rules = [
             'name' => 'required|max:255|unique:users',
             'email' => 'required|email|max:255|unique:users',  
+            'phone_number' => 'required',
             'password' => 'required|min:6',
         ];
         $validator = Validator::make($credentials, $rules);
@@ -27,8 +28,9 @@ class AuthController extends Controller
         }
         $name = $request->name;
         $email = $request->email;
+        $phone_number = $request->phone_number;
         $password = $request->password;
-        User::create(['name' => $name, 'email' => $email, 'password' => Hash::make($password)]);
+        User::create(['name' => $name, 'email' => $email,'phone_number'=>$phone_number,'password' => Hash::make($password)]);
         return $this->login($request);
     }
 

@@ -28,6 +28,7 @@ export default {
             details:{
                  email:'',
                  password:'',
+               
                  
             },
              errors:{},
